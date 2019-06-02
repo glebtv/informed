@@ -5,11 +5,12 @@ const ScopeArrayField = ({ field, children }) => {
   const formApi = useFormApi();
 
   var initialValues = formApi.getInitialValue(field)
+
   if (!initialValues) {
-    throw("initialValue required for ScopeArrayField " + field)
+    throw(new Error("initialValue required for ScopeArrayField " + field))
   }
   if (!Array.isArray(initialValues)) {
-    throw("initialValue should be an array for ScopeArrayField " + field)
+    throw(new Error("initialValue should be an array for ScopeArrayField " + field))
   }
 
   const initialKeys = initialValues.map((v, index) => index);
