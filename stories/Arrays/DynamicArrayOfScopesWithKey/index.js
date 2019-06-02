@@ -31,7 +31,7 @@ const DynamicArrayOfScopes = () => (
             <div style={{ flex: 1, marginRight: '2rem' }}>
               <Text field="name"/>
 
-              <ScopeArrayField field="friends" keyField="id">
+              <ScopeArrayField field="friends">
                 {({ add, fields }) => {
                   return (
                     <React.Fragment>
