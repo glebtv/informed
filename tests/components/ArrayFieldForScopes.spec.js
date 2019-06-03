@@ -15,12 +15,12 @@ describe('ArrayField for an array of scopes', () => {
     return (
       <>
         <ArrayField field="siblings">
-          {({ add, fields }) => (
+          {({ add, addWithValue, fields }) => (
             <React.Fragment>
               <button onClick={() => add()} type="button" id="add">
                 Add Sibling
               </button>
-              <button onClick={() => add({name: "test"})} type="button" id="add-preset">
+              <button onClick={() => addWithValue({name: "test"})} type="button" id="add-preset">
                 Add-preset
               </button>
               {fields.map( ({ field, key, remove }, i) => (

@@ -30,7 +30,7 @@ const DynamicArrayOfScopes = () => (
               <Text field="name"/>
 
               <ArrayField field="friends">
-                {({ add, fields }) => {
+                {({ add, addWithValue, fields }) => {
                   return (
                     <React.Fragment>
                       {fields.map(({key, field, remove}, index) => {
@@ -49,7 +49,7 @@ const DynamicArrayOfScopes = () => (
                       }}>Add</button>
 
                       <button onClick={() => {
-                        add({name: "test"})
+                        addWithValue({name: "test"})
                       }}>Add with preset</button>
 
                       <button onClick={() => {

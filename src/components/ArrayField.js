@@ -27,7 +27,12 @@ const ArrayField = ({ field, children, initialValue }) => {
     setKeys(newKeys);
   };
 
-  const add = (value) => {
+  const add = () => {
+    keys.push(uuidv4());
+    setKeys([...keys]);
+  };
+
+  const addWithValue = (value) => {
     if (value) {
       const prevValues = formApi.getState().values[field]
       var newValues
@@ -42,10 +47,8 @@ const ArrayField = ({ field, children, initialValue }) => {
       set[field] = newValues
       formApi.setValues(set)
     }
-
-    keys.push(uuidv4());
-    setKeys([...keys]);
-  };
+    add()
+  }
 
   const fields = keys.map((key, i) => ({
     key,
@@ -54,7 +57,7 @@ const ArrayField = ({ field, children, initialValue }) => {
     initialValue: initialValues && initialValues[i]
   }));
 
-  return children({ fields, add });
+  return children({ fields, add, addWithValue });
 };
 
 export default ArrayField;
