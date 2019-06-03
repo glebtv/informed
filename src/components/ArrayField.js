@@ -27,7 +27,22 @@ const ArrayField = ({ field, children, initialValue }) => {
     setKeys(newKeys);
   };
 
-  const add = () => {
+  const add = (value) => {
+    if (value) {
+      const prevValues = formApi.getState().values[field]
+      var newValues
+      if (prevValues) {
+        newValues = prevValues.slice()
+      } else {
+        newValues = []
+      }
+      newValues.push(value)
+
+      var set = {}
+      set[field] = newValues
+      formApi.setValues(set)
+    }
+
     keys.push(uuidv4());
     setKeys([...keys]);
   };

@@ -5,7 +5,7 @@ import readme from './README.md';
 import FormState from '../../utils/FormState';
 import Code from '../../utils/Code';
 
-import { Form, Text, ScopeArrayField, Scope } from '../../../src';
+import { Form, Text, ArrayField, Scope } from '../../../src';
 
 const initialValues = {
   name: "test",
@@ -29,7 +29,7 @@ const DynamicArrayOfScopes = () => (
             <div style={{ flex: 1, marginRight: '2rem' }}>
               <Text field="name"/>
 
-              <ScopeArrayField field="friends">
+              <ArrayField field="friends">
                 {({ add, fields }) => {
                   return (
                     <React.Fragment>
@@ -59,7 +59,7 @@ const DynamicArrayOfScopes = () => (
                   )
 
                 }}
-              </ScopeArrayField>
+              </ArrayField>
 
             </div>
             <div style={{ flex: 2, minWidth: '300px' }}>

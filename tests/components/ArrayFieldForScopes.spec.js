@@ -2,9 +2,9 @@ import React from 'react';
 import { expect } from 'chai';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
-import { Form, Text, Scope, ScopeArrayField } from '../../src';
+import { Form, Text, Scope, ArrayField } from '../../src';
 
-describe('ScopeArrayField', () => {
+describe('ArrayField for an array of scopes', () => {
   const sandbox = sinon.createSandbox();
 
   beforeEach(() => {
@@ -14,7 +14,7 @@ describe('ScopeArrayField', () => {
   function getComponent(siblings) {
     return (
       <>
-        <ScopeArrayField field="siblings">
+        <ArrayField field="siblings">
           {({ add, fields }) => (
             <React.Fragment>
               <button onClick={() => add()} type="button" id="add">
@@ -33,7 +33,7 @@ describe('ScopeArrayField', () => {
               ))}
             </React.Fragment>
           )}
-        </ScopeArrayField>
+        </ArrayField>
         <button type="submit">Submit</button>
       </>
     )
@@ -132,18 +132,6 @@ describe('ScopeArrayField', () => {
     const inputs = wrapper.find('input');
     inputs.at(0).simulate('change', { target: { value: 'Jeff' } });
     expect(savedApi.getState().values).to.deep.equal({ siblings: [{name: 'Jeff'}] });
-  })
-
-  it('should throw when no initial value', () => {
-    expect(() => {
-      mount(<Form>{getComponent()}</Form>)
-    }).to.throw(Error, "initialValue required for ScopeArrayField siblings");
-  })
-
-  it('should throw when non-array initial value', () => {
-    expect(() => {
-      mount(<Form initialValues={{siblings: "test"}}>{getComponent()}</Form>)
-    }).to.throw(Error, "initialValue should be an array for ScopeArrayField siblings");
   })
 
   it('should update value when set via formApi', () => {
